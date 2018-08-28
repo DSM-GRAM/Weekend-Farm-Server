@@ -1,7 +1,20 @@
+import socket
+
+
 class Config:
     SERVICE_NAME = 'Weekend-Farm'
 
+    HOST = socket.gethostbyname(socket.gethostname())
+    PORT = 80
+    DEBUG = True
+
     SECRET_KEY = 'd7g98afvi32h423f0202kkvbs82'
+
+    RUN_SETTINGS = {
+        "host": HOST,
+        "port": PORT,
+        "debug": DEBUG
+    }
 
     SWAGGER = {
         'title': SERVICE_NAME,
@@ -21,14 +34,14 @@ class Config:
             'http'
         ],
         'tags': [
-            # Admin --------------------------
+            # Admin ----
             {
                 'name': '',
                 'description': ''
             },
             # -------------------------------
 
-            # User --------------------------
+            # User ----
             {
                 'name': '',
                 'description': ''
