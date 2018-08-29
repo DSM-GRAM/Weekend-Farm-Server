@@ -1,8 +1,8 @@
 from app.docs import jwt_header
 
-SAMPLE_ACCOUNT = {
-    'tags': [''],
-    'description': '',
+USER_ADD_ADDITION = {
+    'tags': ['[USER] 계정 정보 작성'],
+    'description': 'USER 계정 정보 작성',
     'parameters': [
         jwt_header,
         {

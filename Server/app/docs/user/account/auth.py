@@ -1,34 +1,36 @@
-from app.docs import jwt_header
+from app.docs import SAMPLE_ACCESS_TOKEN, SAMPLE_REFRESH_TOKEN
 
-SAMPLE_ACCOUNT = {
-    'tags': [''],
-    'description': '',
+AUTH_POST = {
+    'tags': ['[USER] 계정 로그인'],
+    'description': 'USER 로그인을 하고, ACCESS_TOKEN 과 REFRESH_TOKEN 을 발급함.',
     'parameters': [
-        jwt_header,
         {
-            'name': '',
-            'description': '',
-            'in': '',
-            'type': '',
-            'required': None
-        }
+            'name': 'id',
+            'description': 'USER ID',
+            'in': 'json',
+            'type': 'str',
+            'required': True
+        },
+        {
+            'name': 'pw',
+            'description': 'USER PW',
+            'in': 'json',
+            'type': 'str',
+            'required': True
+        },
     ],
     'responses': {
-        '200': {
-            'description': '',
+        '201': {
+            'description': '로그인 섣공 및 token 생성',
             'examples': {
                 '': {
-                    '': ''
+                    'accessToken': SAMPLE_ACCESS_TOKEN,
+                    'refreshToken': SAMPLE_REFRESH_TOKEN
                 }
             }
         },
-        '201': {
-            'description': '',
-            'examples': {
-                '': {
-                    '': ''
-                }
-            }
+        '401': {
+            'description': '로그인 실패'
         }
     }
 }
