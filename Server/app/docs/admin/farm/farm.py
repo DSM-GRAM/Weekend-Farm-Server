@@ -34,24 +34,40 @@ ADMIN_ADD_INFORM = {
             'required': False
         },
         {
-            'name': 'room_name',
-            'description': '사용 가능 양식장의 이름',
+            'name': 'room',
+            'description': {
+                '': [{
+                        'name': 'room_name',
+                        'description': '사용 가능 양식장의 이름',
+                        'in': 'json',
+                        'type': 'str',
+                        'required': False
+                    },
+                    {
+                        'name': 'room_name',
+                        'description': '사용 가능 양식장의 이름',
+                        'in': 'json',
+                        'type': 'str',
+                        'required': False
+                    },
+                    {
+                        'name': 'room_cost',
+                        'description': '사용 가능 양식장의 월 별 가격',
+                        'in': 'json',
+                        'type': 'int',
+                        'required': False
+                    },
+                    {
+                        'name': 'room_fish',
+                        'description': '사용 가능 양식장의 물고기 마리 수',
+                        'in': 'json',
+                        'type': 'int',
+                        'required': False
+                    },
+                ],
+            },
             'in': 'json',
             'type': 'str',
-            'required': False
-        },
-        {
-            'name': 'room_cost',
-            'description': '사용 가능 양식장의 월 별 가격',
-            'in': 'json',
-            'type': 'int',
-            'required': False
-        },
-        {
-            'name': 'room_fish',
-            'description': '사용 가능 양식장의 물고기 마리 수',
-            'in': 'json',
-            'type': 'int',
             'required': False
         },
         {
