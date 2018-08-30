@@ -1,7 +1,7 @@
 from app.docs import jwt_header
 
-ADMIN_ADD_ADDITION = {
-    'tags': ['[ADMIN] 계정 정보 작성'],
+ADMIN_ADD_INFORM = {
+    'tags': ['[Admin] 계정'],
     'description': '의 정보를 작성하고 저장합니다.',
     'parameters': [
         jwt_header,

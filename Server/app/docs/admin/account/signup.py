@@ -1,5 +1,5 @@
 SIGNUP_POST = {
-    'tags': ['[ADMIN] 계정 생성'],
+    'tags': ['[Admin] 계정'],
     'description': 'Admin 계정을 생성하는 API',
     'parameters': [
         {

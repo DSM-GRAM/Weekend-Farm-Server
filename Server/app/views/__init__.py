@@ -8,9 +8,6 @@ import json
 # get_jwt_identity()를 사용해서 id를 가져와서 쿼리문 날려서 데이터베이스에서 정보 가져옴
 # 그 정보에서 admin인지 아닌지 체크해서 admin이 아니라면 접근 불가능하게 해주는 admin_required 만들 거임
 
-def admin_required():
-    pass
-
 
 class BaseResource(Resource):
 
@@ -40,21 +37,21 @@ class Router:
         from .admin.account import account_management, auth
         app.register_blueprint(account_management.api.blueprint)
         app.register_blueprint(auth.api.blueprint)
-        from .admin.apply import apply_farm, apply_store
-        app.register_blueprint(apply_farm.api.blueprint)
-        app.register_blueprint(apply_store.api.blueprint)
-        from .admin.farm import farm
-        app.register_blueprint(farm.api.blueprint)
-        from .admin.store import store
-        app.register_blueprint(store.api.blueprint)
-
-        from .user.account import account, auth
-        app.register_blueprint(account.api.blueprint)
-        app.register_blueprint(auth.api.blueprint)
-        from .user.apply import apply_farm, apply_store
-        app.register_blueprint(apply_farm.api.blueprint)
-        app.register_blueprint(apply_store.api.blueprint)
-        from .user.farm import farm
-        app.register_blueprint(farm.api.blueprint)
-        from .user.store import store
-        app.register_blueprint(store.api.blueprint)
+        # from .admin.apply import apply_farm, apply_store
+        # app.register_blueprint(apply_farm.api.blueprint)
+        # app.register_blueprint(apply_store.api.blueprint)
+        # from .admin.farm import farm
+        # app.register_blueprint(farm.api.blueprint)
+        # from .admin.store import store
+        # app.register_blueprint(store.api.blueprint)
+        #
+        # from .user.account import account, auth
+        # app.register_blueprint(account.api.blueprint)
+        # app.register_blueprint(auth.api.blueprint)
+        # from .user.apply import apply_farm, apply_store
+        # app.register_blueprint(apply_farm.api.blueprint)
+        # app.register_blueprint(apply_store.api.blueprint)
+        # from .user.farm import farm
+        # app.register_blueprint(farm.api.blueprint)
+        # from .user.store import store
+        # app.register_blueprint(store.api.blueprint)
