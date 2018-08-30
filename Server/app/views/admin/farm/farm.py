@@ -22,9 +22,10 @@ class FarmInformation(BaseResource):
         """
         관리자 양식장 정보 조회
         """
-        farm = FarmModel.objects(farm_hostname=get_jwt_identity()).first()
-        return ''
+        # farm = FarmModel.objects(farm_hostname=get_jwt_identity()).first()
+        # return ''
         # 개 힘듬 하
+        pass
 
     @swag_from()
     @jwt_required
