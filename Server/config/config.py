@@ -17,6 +17,14 @@ class Config:
         "debug": DEBUG
     }
 
+    MONGODB_SETTINGS = {
+        'db': SERVICE_NAME,
+        'host': None,
+        'port': None,
+        'username': os.getenv('MONGO_ID'),
+        'password': os.getenv('MONGO_PW')
+    }
+
     SWAGGER = {
         'title': SERVICE_NAME,
         'specs_route': '/docs',
