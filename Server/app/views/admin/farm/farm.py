@@ -1,5 +1,6 @@
-from flask import Blueprint
+from flask import Blueprint, request
 from flask_restful import Api
+from flask_jwt_extended import jwt_required
 from flasgger import swag_from
 
 from app.views import BaseResource
@@ -13,6 +14,7 @@ api.prefix = '/admin/farm'
 
 @api.resource('')
 class FarmInformation(BaseResource):
+    @jwt_required
     @swag_from(RETURN_ADMIN_ADD_INFORM)
     def get(self):
         """
@@ -20,9 +22,12 @@ class FarmInformation(BaseResource):
         """
         pass
 
+    @jwt_required
     @swag_from(ADMIN_ADD_INFORM)
     def post(self):
         """
         관리자 양식장 정보 작성
         """
-        pass
+        payload = request.json
+
+

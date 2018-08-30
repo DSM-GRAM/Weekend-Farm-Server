@@ -22,4 +22,3 @@ class AccountManagement(BaseResource):
 
 
 # @api.resource('/')
-# class
