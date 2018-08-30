@@ -21,8 +21,6 @@ class Config:
         'db': SERVICE_NAME,
         'host': None,
         'port': None,
-        'username': os.getenv('MONGO_ID'),
-        'password': os.getenv('MONGO_PW')
     }
 
     SWAGGER = {
