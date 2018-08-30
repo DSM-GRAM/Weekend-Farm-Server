@@ -17,12 +17,18 @@ SEARCH_FARM = {
         '200': {
             'description': '',
             'examples': {
-                '': {
+                '': [{
                     'farm_name': '승용이네 양식장',
                     'farm_phone_number': '010-1234-5678',
                     'farm_address': '전북대학교',
                     'farm_details': '많은 관심 부탁드려요'
-                }
+                },
+                    {
+                    'farm_name': '진우네 양식장',
+                    'farm_phone_number': '010-1235-5678',
+                    'farm_address': '전북대학교',
+                    'farm_details': '많은 사랑 부탁드려요'
+                }]
             }
         },
         '204': {
