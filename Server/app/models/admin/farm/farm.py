@@ -20,4 +20,4 @@ class FarmModel(Document):
 
     farm_address_do = StringField()
 
-    minifarm = ListField()
+    mini_farms = ListField()
