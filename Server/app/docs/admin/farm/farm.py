@@ -64,15 +64,14 @@ ADMIN_ADD_INFORM = {
                         'type': 'int',
                         'required': False
                     },
-                ],
+                    {
+                    'name': 'room_Temperature',
+                    'description': '사용 가능 양식장의 이름',
+                    'in': 'json',
+                    'type': 'str',
+                    'required': False
+                    }],
             },
-            'in': 'json',
-            'type': 'str',
-            'required': False
-        },
-        {
-            'name': 'room_Temperature',
-            'description': '사용 가능 양식장의 이름',
             'in': 'json',
             'type': 'str',
             'required': False
