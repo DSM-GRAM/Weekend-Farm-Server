@@ -1,7 +1,10 @@
-from flask import Response
+from flask import Response, abort
 from flask_restful import Resource
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 import json
+
+from app.models.admin.account.account import AdminModel
 
 
 # @jwt_required 를 사용해서 토큰이 있는지 검증하고
@@ -26,6 +29,15 @@ class BaseResource(Resource):
             status_code,
             content_type='application/json; charset=utf8'
         )
+
+    @classmethod
+    def admin_required(cls):
+        admin_id = get_jwt_identity()
+
+        if AdminModel.objects(id=admin_id).first() is None:
+            abort(403)
+
+        return admin_id
 
 
 class Router:
@@ -57,3 +69,5 @@ class Router:
         # app.register_blueprint(farm.api.blueprint)
         # from .user.store import store
         # app.register_blueprint(store.api.blueprint)
+        from .user import search
+        app.register_blueprint(search.api.blueprint)

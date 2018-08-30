@@ -9,3 +9,5 @@ class FarmModel(Document):
     farm_address = StringField()
 
     farm_details = StringField()
+
+    farm_address_do = StringField()

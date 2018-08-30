@@ -63,6 +63,10 @@ class Config:
             {
                 'name': '[User] 계정',
                 'description': '유저 계정 관련 API'
+            },
+            {
+                'name': '[User] Farm',
+                'description': '유저 Farm 기능 관련 API'
             }
         ]
     }
