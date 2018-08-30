@@ -1,4 +1,5 @@
 import socket
+import os
 
 
 class Config:
@@ -8,7 +9,7 @@ class Config:
     PORT = 80
     DEBUG = True
 
-    SECRET_KEY = 'd7g98afvi32h423f0202kkvbs82'
+    SECRET_KEY = os.getenv('SECRET_KEY')
 
     RUN_SETTINGS = {
         "host": HOST,
