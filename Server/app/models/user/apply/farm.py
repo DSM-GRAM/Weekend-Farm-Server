@@ -14,7 +14,7 @@ class FarmApplyModel(Document):
 
     user_phone_number = StringField()
 
-    period = DateTimeField()
+    period = StringField()
 
     details = StringField()
 

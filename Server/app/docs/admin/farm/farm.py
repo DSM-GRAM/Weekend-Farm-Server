@@ -37,7 +37,7 @@ ADMIN_ADD_INFORM = {
             'name': 'room',
             'description': '',
             'in': 'json',
-            'type': 'str',
+            'type': 'list',
             'required': False
         },
     ],
