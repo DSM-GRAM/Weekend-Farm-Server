@@ -9,7 +9,7 @@ class MiniFarmApplyModel(EmbeddedDocument):
     mini_farm_fish_number = IntField()
 
 
-class FarmApplyModel(document):
+class FarmApplyModel(Document):
     user_name = StringField()
 
     user_phone_number = StringField()

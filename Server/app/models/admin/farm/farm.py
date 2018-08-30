@@ -1,7 +1,7 @@
 from mongoengine import *
 
 
-class FarmModel(document):
+class FarmModel(Document):
     farm_name = StringField()
 
     farm_phone_number = StringField()

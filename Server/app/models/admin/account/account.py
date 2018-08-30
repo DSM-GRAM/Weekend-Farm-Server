@@ -1,7 +1,7 @@
 from mongoengine import *
 
 
-class AdminModel(document):
+class AdminModel(Document):
     id = StringField(
         primary_key=True,
     )

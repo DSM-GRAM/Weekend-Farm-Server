@@ -1,7 +1,7 @@
 from mongoengine import *
 
 
-class UserModel(document):
+class UserModel(Document):
     id = StringField(
         primary_key=True,
     )

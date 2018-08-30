@@ -34,8 +34,8 @@ class Router:
             self.init_app(app)
 
     def init_app(self, app):
-        from .admin.account import account_management, auth, signup
-        # app.register_blueprint(account_management.api.blueprint)
+        from .admin.account import account, auth, signup
+        # app.register_blueprint(account.api.blueprint)
         app.register_blueprint(auth.api.blueprint)
         app.register_blueprint(signup.api.blueprint)
         # from .admin.apply import apply_farm, apply_store

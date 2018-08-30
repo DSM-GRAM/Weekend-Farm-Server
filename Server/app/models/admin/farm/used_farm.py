@@ -1,7 +1,7 @@
 from mongoengine import *
 
 
-class UsedFarmModel(document):
+class UsedFarmModel(Document):
     farm_number = IntField()
 
     farm_cost = IntField()

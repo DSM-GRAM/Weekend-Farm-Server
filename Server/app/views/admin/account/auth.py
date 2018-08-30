@@ -1,7 +1,10 @@
-from flask import Blueprint
+from flask import Blueprint, abort, request
 from flask_restful import Api
+from flask_jwt_extended import create_access_token, create_refresh_token
 from flasgger import swag_from
+from werkzeug.security import check_password_hash
 
+from app.models.admin.account.account import AdminModel
 from app.views import BaseResource
 from app.docs.admin.account.auth import AUTH_POST
 
@@ -18,7 +21,17 @@ class AccountManagement(BaseResource):
         """
         관리자 로그인
         """
-        pass
+        payload = request.json
 
+        admin_id = payload['id']
+        admin_pw = payload['pw']
 
-# @api.resource('/')
+        admin = AdminModel.object(id=id).first()
+
+        if admin is None:
+            abort(406)
+
+        return {
+            'access_token': create_access_token(identity=admin_id),
+            'refresh_token': create_refresh_token(identity=admin_id)
+        }, 200 if check_password_hash(admin.pw, admin_pw) else abort(406)

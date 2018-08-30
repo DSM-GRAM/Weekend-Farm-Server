@@ -1,7 +1,7 @@
 from mongoengine import *
 
 
-class StoreModel(document):
+class StoreModel(Document):
     store_product = StringField()
 
     store_cost = IntField()

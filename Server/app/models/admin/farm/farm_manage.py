@@ -1,7 +1,7 @@
 from mongoengine import *
 
 
-class FarmManageModel(document):
+class FarmManageModel(Document):
     farm_number = IntField()
 
     farm_user = StringField()
