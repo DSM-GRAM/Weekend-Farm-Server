@@ -26,7 +26,7 @@ class AccountManagement(BaseResource):
         admin_id = payload['id']
         admin_pw = payload['pw']
 
-        admin = AdminModel.objects(id=id).first()
+        admin = AdminModel.objects(id=admin_id).first()
 
         if admin is None:
             abort(406)

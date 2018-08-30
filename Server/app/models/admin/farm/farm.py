@@ -1,12 +1,6 @@
 from mongoengine import *
 
 
-class MiniFarmModel(EmbeddedDocument)
-    minifarm_num = IntField()
-    minifarm_fish_kind = ListField(null=True)
-    minifarm_fish_number = IntField()
-
-
 class FarmModel(Document):
     farm_name = StringField()
 

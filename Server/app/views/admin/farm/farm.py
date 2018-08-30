@@ -22,7 +22,7 @@ class FarmInformation(BaseResource):
         """
         관리자 양식장 정보 조회
         """
-        farm = FarmModel.objects(farm_hostname=get_jwt_identity()).first())
+        farm = FarmModel.objects(farm_hostname=get_jwt_identity()).first()
         return ''
         # 개 힘듬 하
 
@@ -48,10 +48,10 @@ class FarmInformation(BaseResource):
                 farm_phone_number=farm_phone_num,
                 farm_address=farm_address,
                 farm_details=details,
-                minifarm=[{
-                'farm_number': room.farm_number,
-                'farm_cost': room.farm_cost,
-                'farm_fish_max': room.farm_fish_max
+                mini_farms=[{
+                    'farm_number': room['farm_number'],
+                    'farm_cost': room['farm_cost'],
+                    'farm_fish_max': room['farm_fish_max']
                 } for room in rooms]
             ).save()
         except TypeError:
@@ -69,10 +69,26 @@ class EditExtensionOption(BaseResource):
 
         farm.update(
             mini_farms=[{
-            'farm_number': room.farm_number,
-            'farm_cost': room.farm_cost,
-            'farm_fish_max': room.farm_fish_max
-        } for room in rooms])
+                'farm_number': room.farm_number,
+                'farm_cost': room.farm_cost,
+                'farm_fish_max': room.farm_fish_max
+            } for room in rooms])
 
         return '', 201
 
+
+@api.resource('/list')
+class ViewAdminMiniFarmList(BaseResource):
+    @swag_from()
+    @jwt_required
+    def get(self):
+        farm = FarmModel.objects(farm_hostname=get_jwt_identity()).first()
+
+        if farm is None:
+            abort(406)
+
+        return [{
+            'farm_number': room.farm_number,
+            'farm_cost': room.farm_cost,
+            'farm_fish_max': room.farm_fish_max
+        } for room in farm.mini_farms], 200

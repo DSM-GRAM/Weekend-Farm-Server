@@ -28,13 +28,12 @@ class SignupAdmin(BaseResource):
         if AdminModel.objects(id=admin_id).first():
             abort(409)
 
-        admin_hashed_pw = generate_password_hash(admin_phone_number)
+        admin_hashed_pw = generate_password_hash(admin_pw)
 
         AdminModel(
-           id=admin_id,
-           pw=admin_pw,
-           name=admin_name,
-           phone_number=admin_hashed_pw
+            id=admin_id,
+            pw=admin_hashed_pw,
+            name=admin_name,
+            phone_number=admin_phone_number
         ).save()
-
         return '', 201
