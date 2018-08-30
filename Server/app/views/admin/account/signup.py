@@ -1,6 +1,7 @@
 from flask import Blueprint, abort, request
 from flask_restful import Api
 from flasgger import swag_from
+from werkzeug.security import generate_password_hash
 
 from app.views import BaseResource
 from app.docs.admin.account.signup import SIGNUP_POST
@@ -16,19 +17,24 @@ api.prefix = '/admin'
 class SignupAdmin(BaseResource):
     @swag_from(SIGNUP_POST)
     def post(self):
-        id = request.json['id']
-        pw = request.json['pw']
-        name = request.json['name']
-        phone_number = request.json['phone_number']
+        """
+        관리자 회원가입
+        """
+        admin_id = request.json['id']
+        admin_pw = request.json['pw']
+        admin_name = request.json['name']
+        admin_phone_number = request.json['phone_number']
 
-        if AdminModel.object(id=id).first():
-            abort(406)
+        if AdminModel.objects(id=id).first():
+            abort(409)
+
+        admin_hashed_pw = generate_password_hash(admin_phone_number)
 
         AdminModel(
-           id=id,
-           pw=pw,
-           name=name,
-           phone_number=phone_number
-       ).save()
+           id=admin_id,
+           pw=admin_pw,
+           name=admin_name,
+           phone_number=admin_hashed_pw
+        ).save()
 
         return '', 201
