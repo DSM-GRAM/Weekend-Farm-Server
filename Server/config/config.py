@@ -41,9 +41,17 @@ class Config:
                 'description': '관리자 계정 관련 API'
             },
             {
-                'name': '[Admin] 모름',
-                'description': '모름'
+                'name': '[Admin] 계정 관리',
+                'description': '관리자 계정 관련 관리 API'
             },
+            {
+                'name': '[Admin] 계정 정보',
+                'description': '관리자 계정의 정보를 보내주는 API'
+            },
+            {
+                'name': '[Admin] Farm',
+                'description': '관리자 계정에서 양식장 관련 데이터 처리 API'
+            }
         ]
     }
 

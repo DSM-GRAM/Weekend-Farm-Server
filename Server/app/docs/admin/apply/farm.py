@@ -1,6 +1,6 @@
 from app.docs import jwt_header
 
-SAMPLE_ACCOUNT = {
+r = {
     'tags': [''],
     'description': '',
     'parameters': [

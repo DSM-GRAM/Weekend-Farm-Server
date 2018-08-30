@@ -15,6 +15,9 @@ api.prefix = '/admin'
 class AccountManagement(BaseResource):
     @swag_from(AUTH_POST)
     def post(self):
+        """
+        관리자 로그인
+        """
         pass
 
 
