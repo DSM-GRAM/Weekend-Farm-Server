@@ -1,6 +1,6 @@
 from app.docs import SAMPLE_ACCESS_TOKEN, SAMPLE_REFRESH_TOKEN
 
-AUTH_POST = {
+ADMIN_AUTH_POST = {
     'tags': ['[Admin] 계정'],
     'description': 'ADMIN 로그인을 하고, ACCESS_TOKEN 과 REFRESH_TOKEN 을 발급함.',
     'parameters': [

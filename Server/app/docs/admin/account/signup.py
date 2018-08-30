@@ -1,38 +1,31 @@
-SIGNUP_POST = {
+ADMIN_SIGNUP_POST = {
     'tags': ['[Admin] 계정'],
     'description': 'Admin 계정을 생성하는 API',
     'parameters': [
         {
             'name': 'id',
-            'description': '생성할 유저 ID',
+            'description': '생성할 관리자 ID',
             'in': 'json',
             'type': 'str',
             'required': True
         },
         {
             'name': 'pw',
-            'description': '생성할 유저 비밀번호',
-            'in': 'json',
-            'type': 'str',
-            'required': True
-        },
-        {
-            'name': 'pw_re',
-            'description': '생성할 유저 비밀번호와 똑같은 비밀번호 입력',
+            'description': '생성할 관리자 비밀번호',
             'in': 'json',
             'type': 'str',
             'required': True
         },
         {
             'name': 'name',
-            'description': '생성할 유저 이름',
+            'description': '생성할 관리자 이름',
             'in': 'json',
             'type': 'str',
             'required': True
         },
         {
-            'name': 'phone_num',
-            'description': '생성할 유저 계정의 전화번호',
+            'name': 'phone_number',
+            'description': '생성할 관리자 계정의 전화번호',
             'in': 'json',
             'type': 'str',
             'required': True

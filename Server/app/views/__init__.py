@@ -46,9 +46,10 @@ class Router:
         # from .admin.store import store
         # app.register_blueprint(store.api.blueprint)
         #
-        # from .user.account import account, auth
+        from .user.account import account, auth, signup
         # app.register_blueprint(account.api.blueprint)
-        # app.register_blueprint(auth.api.blueprint)
+        app.register_blueprint(auth.api.blueprint)
+        app.register_blueprint(signup.api.blueprint)
         # from .user.apply import apply_farm, apply_store
         # app.register_blueprint(apply_farm.api.blueprint)
         # app.register_blueprint(apply_store.api.blueprint)

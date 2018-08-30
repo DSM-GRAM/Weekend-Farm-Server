@@ -1,7 +1,7 @@
 from app.docs import SAMPLE_ACCESS_TOKEN, SAMPLE_REFRESH_TOKEN
 
-AUTH_POST = {
-    'tags': ['[USER] 계정 로그인'],
+USER_AUTH_POST = {
+    'tags': ['[User] 계정'],
     'description': 'USER 로그인을 하고, ACCESS_TOKEN 과 REFRESH_TOKEN 을 발급함.',
     'parameters': [
         {

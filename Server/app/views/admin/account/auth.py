@@ -6,7 +6,7 @@ from werkzeug.security import check_password_hash
 
 from app.models.admin.account.account import AdminModel
 from app.views import BaseResource
-from app.docs.admin.account.auth import AUTH_POST
+from app.docs.admin.account.auth import ADMIN_AUTH_POST
 
 
 blueprint = Blueprint(__name__, __name__)
@@ -16,7 +16,7 @@ api.prefix = '/admin'
 
 @api.resource('/login')
 class AccountManagement(BaseResource):
-    @swag_from(AUTH_POST)
+    @swag_from(ADMIN_AUTH_POST)
     def post(self):
         """
         관리자 로그인

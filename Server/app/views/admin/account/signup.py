@@ -4,7 +4,7 @@ from flasgger import swag_from
 from werkzeug.security import generate_password_hash
 
 from app.views import BaseResource
-from app.docs.admin.account.signup import SIGNUP_POST
+from app.docs.admin.account.signup import ADMIN_SIGNUP_POST
 from app.models.admin.account.account import AdminModel
 
 
@@ -15,7 +15,7 @@ api.prefix = '/admin'
 
 @api.resource('/signup')
 class SignupAdmin(BaseResource):
-    @swag_from(SIGNUP_POST)
+    @swag_from(ADMIN_SIGNUP_POST)
     def post(self):
         """
         관리자 회원가입

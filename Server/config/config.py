@@ -59,6 +59,10 @@ class Config:
             {
                 'name': '[Admin] Farm',
                 'description': '관리자 계정에서 양식장 관련 데이터 처리 API'
+            },
+            {
+                'name': '[User] 계정',
+                'description': '유저 계정 관련 API'
             }
         ]
     }
