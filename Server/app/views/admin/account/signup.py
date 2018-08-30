@@ -25,7 +25,7 @@ class SignupAdmin(BaseResource):
         admin_name = request.json['name']
         admin_phone_number = request.json['phone_number']
 
-        if AdminModel.objects(id=id).first():
+        if AdminModel.objects(id=admin_id).first():
             abort(409)
 
         admin_hashed_pw = generate_password_hash(admin_phone_number)
