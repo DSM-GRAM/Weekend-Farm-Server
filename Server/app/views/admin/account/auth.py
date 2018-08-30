@@ -11,8 +11,12 @@ api = Api(blueprint)
 api.prefix = '/admin'
 
 
-@api.resource('/manage')
+@api.resource('/login')
 class AccountManagement(BaseResource):
     @swag_from(AUTH_POST)
     def post(self):
         pass
+
+
+# @api.resource('/')
+# class

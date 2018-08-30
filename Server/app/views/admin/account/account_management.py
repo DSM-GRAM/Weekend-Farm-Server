@@ -3,7 +3,7 @@ from flask_restful import Api
 from flasgger import swag_from
 
 from app.views import BaseResource
-from app.docs.admin.account.account import ADMIN_ADD_INFORM
+from app.docs.admin.account.account_management import ADMIN_ADD_INFORM
 
 
 blueprint = Blueprint(__name__, __name__)
