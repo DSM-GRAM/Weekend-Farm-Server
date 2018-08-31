@@ -4,34 +4,34 @@ from flask_jwt_extended import create_access_token, create_refresh_token
 from flasgger import swag_from
 from werkzeug.security import check_password_hash
 
-from app.models.user.account.account import UserModel
+from app.models.admin import AdminModel
 from app.views import BaseResource
-from app.docs.user.account.auth import USER_AUTH_POST
+from app.docs.admin.account.auth import ADMIN_AUTH_POST
 
 
 blueprint = Blueprint(__name__, __name__)
 api = Api(blueprint)
-api.prefix = '/user'
+api.prefix = '/admin'
 
 
 @api.resource('/login')
-class UserLogin(BaseResource):
-    @swag_from(USER_AUTH_POST)
+class AccountManagement(BaseResource):
+    @swag_from(ADMIN_AUTH_POST)
     def post(self):
         """
-        유저 로그인
+        관리자 로그인
         """
         payload = request.json
 
-        user_id = payload['id']
-        user_pw = payload['pw']
+        admin_id = payload['id']
+        admin_pw = payload['pw']
 
-        user = UserModel.objects(id=user_id).first()
+        admin = AdminModel.objects(id=admin_id).first()
 
-        if user is None:
+        if admin is None:
             abort(406)
 
         return {
-            'access_token': create_access_token(identity=user_id),
-            'refresh_token': create_refresh_token(identity=user_id)
-        }, 200 if check_password_hash(user.pw, user_pw) else abort(406)
+            'access_token': create_access_token(identity=admin_id),
+            'refresh_token': create_refresh_token(identity=admin_id)
+        }, 200 if check_password_hash(admin.pw, admin_pw) else abort(406)
