@@ -5,9 +5,9 @@ from flasgger import swag_from
 
 from app.models.admin import AdminModel
 from app.models.farm import FarmModel, MiniFarmModel
+from app.models.apply import ApplyModel
 from app.views import BaseResource
 from app.docs.admin.farm.farm import ADMIN_ADD_INFORM, RETURN_ADMIN_ADD_INFORM
-
 
 blueprint = Blueprint(__name__, __name__)
 api = Api(blueprint)
@@ -22,12 +22,15 @@ class FarmInformation(BaseResource):
         """
         관리자 양식장 정보 조회
         """
-        farm = FarmModel.objects(farm_hostname=get_jwt_identity()).first()
+        admin = AdminModel.objects(id=get_jwt_identity()).first()
+        farm = FarmModel.objects(farm_hostname=admin.name).first()
 
         return self.unicode_safe_json_dumps([{
-            'farm_number': farm.farm_number,
-            'user_name': farm.user_name
-        }])
+            'room_cost': data.farm_cost,
+            'room_fish_max': data.farm_fish_max,
+            'room_number': data.farm_number,
+            'room_temperature': data.temperature
+        } for data in farm.mini_farms], 200) if admin or farm else abort(406)
 
     @swag_from(ADMIN_ADD_INFORM)
     @jwt_required
@@ -93,12 +96,12 @@ class ViewAdminMiniFarmList(BaseResource):
         관리자 신청 상황
         """
         farm = FarmModel.objects(farm_hostname=get_jwt_identity()).first()
+        apply = ApplyModel.objects(farm_name=farm.farm_name).first()
 
-        if farm is None:
+        if farm is None or apply is None:
             abort(406)
 
-        return [{
-            'farm_number': room.farm_number,
-            'farm_cost': room.farm_cost,
-            'farm_fish_max': room.farm_fish_max
-        } for room in farm.mini_farms], 200
+        return self.unicode_safe_json_dumps([{
+            'farm_number': farm.farm_number,
+            'user_name': farm.user_name
+        } for farm in farm.mini_farms], 200)
