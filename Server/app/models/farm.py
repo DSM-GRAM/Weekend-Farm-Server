@@ -41,7 +41,7 @@ class MiniFarmModel(EmbeddedDocument):
 class FarmModel(Document):
     farm_name = StringField()
 
-    farm_hostname = ReferenceField(
+    admin = ReferenceField(
         document_type=AdminModel
     )
 

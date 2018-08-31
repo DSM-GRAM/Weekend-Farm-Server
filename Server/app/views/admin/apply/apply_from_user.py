@@ -21,9 +21,8 @@ class ApplyFromUser(BaseResource):
         """
         유저가 보낸 신청을 불러오는 API
         """
-        admin = AdminModel.objects(id=get_jwt_identity()).first()
-        farm = FarmModel.objects(farm_hostname=admin.name).first()
-        apply = ApplyModel.objects(farm_name=farm.farm_name).all()
+        farm = FarmModel.objects(admin=AdminModel.objects(id=get_jwt_identity()).first()).first()
+        apply = ApplyModel.objects(farm=farm).all()
 
         return self.unicode_safe_json_dumps([{
             'farm_name': apply.farm_name,
