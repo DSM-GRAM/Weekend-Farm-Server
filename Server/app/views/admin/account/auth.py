@@ -4,7 +4,7 @@ from flask_jwt_extended import create_access_token, create_refresh_token
 from flasgger import swag_from
 from werkzeug.security import check_password_hash
 
-from app.models.admin.account.account import AdminModel
+from app.models.admin import AdminModel
 from app.views import BaseResource
 from app.docs.admin.account.auth import ADMIN_AUTH_POST
 

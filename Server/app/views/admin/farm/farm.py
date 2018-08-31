@@ -3,8 +3,8 @@ from flask_restful import Api
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from flasgger import swag_from
 
-from app.models.admin.farm.farm import FarmModel
-from app.models.admin.farm.used_farm import UsedFarmModel
+from app.models.admin import AdminModel
+from app.models.farm import FarmModel, MiniFarmModel
 from app.views import BaseResource
 from app.docs.admin.farm.farm import ADMIN_ADD_INFORM, RETURN_ADMIN_ADD_INFORM
 
@@ -22,12 +22,14 @@ class FarmInformation(BaseResource):
         """
         관리자 양식장 정보 조회
         """
-        # farm = FarmModel.objects(farm_hostname=get_jwt_identity()).first()
-        # return ''
-        # 개 힘듬 하
-        pass
+        farm = FarmModel.objects(farm_hostname=get_jwt_identity()).first()
 
-    @swag_from()
+        return self.unicode_safe_json_dumps([{
+            'farm_number': farm.farm_number,
+            'user_name': farm.user_name
+        }])
+
+    @swag_from(ADMIN_ADD_INFORM)
     @jwt_required
     def post(self):
         """
@@ -42,45 +44,44 @@ class FarmInformation(BaseResource):
 
         rooms = payload['rooms']
 
+        admin = AdminModel.objects(id=get_jwt_identity()).first()
+
         try:
             FarmModel(
                 farm_name=farm_name,
-                farm_hostname=get_jwt_identity(),
+                farm_hostname=FarmModel.farm_hostname.name,
                 farm_phone_number=farm_phone_num,
                 farm_address=farm_address,
                 farm_details=details,
-                mini_farms=[{
-                    'farm_number': room['farm_number'],
-                    'farm_cost': room['farm_cost'],
-                    'farm_fish_max': room['farm_fish_max']
-                } for room in rooms]
+                mini_farms=rooms
             ).save()
+
         except TypeError:
             abort(406)
 
         return '', 201
 
 
-@api.resource('/edit')
-class EditExtensionOption(BaseResource):
-    @swag_from()
-    @jwt_required
-    def post(self):
-        """
-        사용 가능 양식장 수정
-        """
-        rooms = request.json['rooms']
-
-        farm = FarmModel.objects(farm_hostname=get_jwt_identity()).first()
-
-        farm.update(
-            mini_farms=[{
-                'farm_number': room.farm_number,
-                'farm_cost': room.farm_cost,
-                'farm_fish_max': room.farm_fish_max
-            } for room in rooms])
-
-        return '', 201
+# @api.resource('/edit')
+# class EditExtensionOption(BaseResource):
+#     @swag_from()
+#     @jwt_required
+#     def post(self):
+#         """
+#         사용 가능 양식장 수정
+#         """
+#         rooms = request.json['rooms']
+#
+#         farm = FarmModel.objects(farm_hostname=get_jwt_identity()).first()
+#
+#         farm.update(
+#             mini_farms=[{
+#                 'farm_number': room.farm_number,
+#                 'farm_cost': room.farm_cost,
+#                 'farm_fish_max': room.farm_fish_max
+#             } for room in rooms])
+#
+#         return '', 201
 
 
 @api.resource('/list')

@@ -1,10 +1,10 @@
 from flask import Response, abort
 from flask_restful import Resource
-from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask_jwt_extended import get_jwt_identity
 
 import json
 
-from app.models.admin.account.account import AdminModel
+from app.models.admin.account import AdminModel
 
 
 # @jwt_required 를 사용해서 토큰이 있는지 검증하고
@@ -46,7 +46,7 @@ class Router:
             self.init_app(app)
 
     def init_app(self, app):
-        from .admin.account import account, auth, signup
+        from .admin.account import auth, signup
         # app.register_blueprint(account.api.blueprint)
         app.register_blueprint(auth.api.blueprint)
         app.register_blueprint(signup.api.blueprint)
@@ -58,7 +58,7 @@ class Router:
         # from .admin.store import store
         # app.register_blueprint(store.api.blueprint)
         #
-        from .user.account import account, auth, signup
+        from .user.account import auth, signup
         # app.register_blueprint(account.api.blueprint)
         app.register_blueprint(auth.api.blueprint)
         app.register_blueprint(signup.api.blueprint)

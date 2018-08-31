@@ -1,10 +1,10 @@
-from flask import Blueprint, abort, request
+from flask import Blueprint, request
 from flask_restful import Api
 from flask_jwt_extended import jwt_required
 from flasgger import swag_from
 
 from app.views import BaseResource
-from app.models.admin.store.store import StoreModel
+from app.models.admin.store import StoreModel
 
 
 blueprint = Blueprint(__name__, __name__)

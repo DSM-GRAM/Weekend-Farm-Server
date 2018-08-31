@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash
 
 from app.views import BaseResource
 from app.docs.admin.account.signup import ADMIN_SIGNUP_POST
-from app.models.admin.account.account import AdminModel
+from app.models.admin import AdminModel
 
 
 blueprint = Blueprint(__name__, __name__)
