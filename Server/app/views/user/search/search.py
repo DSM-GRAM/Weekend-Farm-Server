@@ -34,7 +34,7 @@ class SearchFarm(BaseResource):
         return self.unicode_safe_json_dumps([{
             'farmName': farm.farm_name,
             'farmMoney': farm.mini_farms[0].farm_cost,
-        } for farm in all_farm if do in farm.address], 200)
+        } for farm in all_farm if do in farm.farm_address], 200)
 
 
 @api.resource('/search/<farmname>')
