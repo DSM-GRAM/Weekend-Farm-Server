@@ -19,7 +19,7 @@ class AccountManagement(BaseResource):
     @swag_from(ADMIN_AUTH_POST)
     def post(self):
         """
-        관리자 로그인
+        유저 로그인
         """
         payload = request.json
 

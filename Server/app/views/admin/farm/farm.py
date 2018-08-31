@@ -49,6 +49,8 @@ class FarmInformation(BaseResource):
 
         admin = AdminModel.objects(id=get_jwt_identity()).first()
 
+        minifarms = [MiniFarmModel(**data, admin=admin).save() for data in rooms]
+
         try:
             FarmModel(
                 farm_name=farm_name,
@@ -56,7 +58,7 @@ class FarmInformation(BaseResource):
                 farm_phone_number=farm_phone_num,
                 farm_address=farm_address,
                 farm_details=details,
-                mini_farms=rooms
+                mini_farms=minifarms
             ).save()
 
         except TypeError:

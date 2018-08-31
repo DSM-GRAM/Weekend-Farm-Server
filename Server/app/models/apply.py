@@ -18,6 +18,8 @@ class ApplyModel(Document):
 
     details = StringField()
 
-    use_farm = ReferenceField(
-        document_type=FarmModel
-    )
+    use_farm_num = IntField()
+
+    use_farm_fish = StringField()
+
+    use_amount = IntField()

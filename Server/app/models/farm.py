@@ -8,12 +8,7 @@ class MiniFarmFishModel(EmbeddedDocument):
 
 
 class MiniFarmModel(EmbeddedDocument):
-    user_name = ReferenceField(
-        document_type=AdminModel,
-        default=None
-    )
-
-    user_phone_number = ReferenceField(
+    admin = ReferenceField(
         document_type=AdminModel,
         default=None
     )
