@@ -1,10 +1,10 @@
 from mongoengine import *
-from app.models.farm import FarmModel
+from app.models.user import UserModel
 
 
 class StoreModel(Document):
     user = ReferenceField(
-        document_type=FarmModel
+        document_type=UserModel
     )
 
     itemName = StringField()

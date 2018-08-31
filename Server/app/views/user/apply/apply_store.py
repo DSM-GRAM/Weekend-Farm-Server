@@ -47,3 +47,23 @@ class SearchFarm(BaseResource):
         ).save()
 
         return '', 201
+
+
+@api.resource('/apply/secret')
+class Secret(BaseResource):
+    @jwt_required
+    def post(self):
+        itemName = request.json['itemName']
+        itemNum = request.json['itemNum']
+        money = request.json['money']
+        details = request.json['details']
+
+        StoreModel(
+            user=UserModel.objects(id=get_jwt_identity()).first(),
+            itemName=itemName,
+            itemNum=itemNum,
+            money=money,
+            details=details
+        ).save()
+
+        return '', 201
