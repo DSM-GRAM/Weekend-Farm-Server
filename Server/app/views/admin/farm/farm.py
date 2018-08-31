@@ -72,9 +72,8 @@ class EditExtensionOption(BaseResource):
     @jwt_required
     def get(self, num):
         admin = AdminModel.objects(id=get_jwt_identity()).first()
-        farm = FarmModel.objects(farm_hostname=admin.name).first()
-        apply = ApplyModel.objects(farm=FarmModel.objects(farm_name=farm.farm_name).first()).first()
-        minifarm = farm.mini_farms[num-1]
+        apply = ApplyModel.objects(farm=FarmModel.objects(admin=admin).first()).first()
+        minifarm = apply.farm.mini_farms[num-1]
 
         return self.unicode_safe_json_dumps({
             'name': apply.user.name,

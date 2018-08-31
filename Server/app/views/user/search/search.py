@@ -37,14 +37,16 @@ class SearchFarm(BaseResource):
         } for farm in all_farm if do in farm.farm_address], 200)
 
 
-@api.resource('/search/<farmname>')
+@api.resource('/search')
 class SearchFarmInfo(BaseResource):
     @swag_from()
     @jwt_required
-    def get(self, farmname):
+    def get(self):
         """
 
         """
+        farmname = request.args.get('farmname')
+        
         farm = FarmModel.objects(farm_name=farmname).first()
 
         if farm is None:
