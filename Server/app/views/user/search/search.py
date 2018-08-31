@@ -19,7 +19,7 @@ doList = ['서울특별시', '부산광역시', '대구광역시', '인천광역
 class SearchFarm(BaseResource):
     @swag_from(SEARCH_FARM)
     @jwt_required
-    def post(self):
+    def get(self):
         """
         양식장 검색
         """
