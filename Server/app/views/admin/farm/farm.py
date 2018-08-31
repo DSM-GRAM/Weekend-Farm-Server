@@ -54,7 +54,7 @@ class FarmInformation(BaseResource):
         try:
             FarmModel(
                 farm_name=farm_name,
-                farm_hostname=FarmModel.farm_hostname.name,
+                admin=admin,
                 farm_phone_number=farm_phone_num,
                 farm_address=farm_address,
                 farm_details=details,
