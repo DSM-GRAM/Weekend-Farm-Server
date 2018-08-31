@@ -47,19 +47,15 @@ class Router:
 
     def init_app(self, app):
         from .admin.account import auth, signup
-        # app.register_blueprint(account.api.blueprint)
         app.register_blueprint(auth.api.blueprint)
         app.register_blueprint(signup.api.blueprint)
-        # from .admin.apply import apply_farm, apply_store
-        # app.register_blueprint(apply_farm.api.blueprint)
-        # app.register_blueprint(apply_store.api.blueprint)
+        from .admin.apply import apply_store
+        app.register_blueprint(apply_store.api.blueprint)
         from .admin.farm import farm
         app.register_blueprint(farm.api.blueprint)
         # from .admin.store import store
         # app.register_blueprint(store.api.blueprint)
-        #
         from .user.account import auth, signup
-        # app.register_blueprint(account.api.blueprint)
         app.register_blueprint(auth.api.blueprint)
         app.register_blueprint(signup.api.blueprint)
         # from .user.apply import apply_farm, apply_store
@@ -69,5 +65,5 @@ class Router:
         # app.register_blueprint(farm.api.blueprint)
         # from .user.store import store
         # app.register_blueprint(store.api.blueprint)
-        from .user import search
-        app.register_blueprint(search.api.blueprint)
+        # from .user import search
+        # app.register_blueprint(search.api.blueprint)
