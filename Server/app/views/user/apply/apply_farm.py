@@ -19,38 +19,7 @@ class SearchFarm(BaseResource):
     @swag_from()
     @jwt_required
     def post(self, farm_name):
-        # """
-        # 유저 양식장 신청
-        # """
-        # phone_num = request.json['phone_number'],
-        # farm_period = request.json['farm_period']
-        # # farm_period = '2018_01_01~2018_08_12'
-        # details = request.json['details']
-        # 
-        # apply_farm = request.json['apply_farm']
-        # 
-        # # farm_period_first_point = farm_period[:9]
-        # # farm_period_end_point = farm_period[11:]
-        # 
-        # farm = FarmModel.objects(farm_name=farm_name).first()
-        # user = UserModel.objects(id=get_jwt_identity()).first()
-        # 
-        # minifarm_apply = MiniFarmApplyModel(
-        #     mini_farm_number=apply_farm,
-        #     mini_farm_fish_kind=farm.having_minifarm.minifarm_fish_kind,
-        #     mini_farm_fish_number=farm.having_minifarm.minifarm_fish_number
-        # )
-        # 
-        # apply = FarmApplyModel(
-        #     user_name=user.name,
-        #     user_phone_number=user.phone_number,
-        #     period=farm_period,
-        #     details=details,
-        # )
-        # 
-        # apply.mini_farm_list.append(minifarm_apply)
-        # apply.save()
-        # 
-        # return '', 201
-
-# 모름 내일 할거임 기획을 제대로 이해 못한 탓
+        """
+        유저 양식장 신청
+        """
+        pass
