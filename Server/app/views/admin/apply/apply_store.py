@@ -4,7 +4,7 @@ from flask_jwt_extended import jwt_required
 from flasgger import swag_from
 
 from app.views import BaseResource
-from app.models.admin.store import StoreModel
+from app.models.store import StoreModel
 
 
 blueprint = Blueprint(__name__, __name__)
