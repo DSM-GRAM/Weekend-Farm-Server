@@ -25,13 +25,13 @@ class ApplyFromUser(BaseResource):
         apply = ApplyModel.objects(farm=farm).all()
 
         return self.unicode_safe_json_dumps([{
-            'farm_name': apply.farm_name,
-            'applier_phone_number': apply.applier_phone_number,
-            'period': apply.period,
-            'details': apply.details,
-            'use_farm': [{
-                'farm_number': apply.use_farm_num,
-                'farm_fish': apply.use_farm_fish,
-                'farm_fish_amount': apply.use_amount
+            'farm_name': apply.farm.farm_name,
+            'user_phone_number': apply.user.phone_number,
+            'applyDate': apply.applyDate,
+            'message': apply.message,
+            'roominfo': [{
+                'itemNum': apply.roominfo.itemNum,
+                'itemName': apply.roominfo.itemName,
+                'money': apply.money
             }]
         } for apply in apply], 200)
