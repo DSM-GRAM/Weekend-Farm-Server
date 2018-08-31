@@ -6,4 +6,4 @@ class StoreModel(Document):
 
     store_cost = IntField()
 
-    store_Details = StringField()
+    store_details = StringField()

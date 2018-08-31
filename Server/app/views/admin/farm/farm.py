@@ -63,7 +63,12 @@ class FarmInformation(BaseResource):
 
 @api.resource('/edit')
 class EditExtensionOption(BaseResource):
+    @swag_from()
+    @jwt_required
     def post(self):
+        """
+        사용 가능 양식장 수정
+        """
         rooms = request.json['rooms']
 
         farm = FarmModel.objects(farm_hostname=get_jwt_identity()).first()
@@ -83,6 +88,9 @@ class ViewAdminMiniFarmList(BaseResource):
     @swag_from()
     @jwt_required
     def get(self):
+        """
+        관리자 신청 상황
+        """
         farm = FarmModel.objects(farm_hostname=get_jwt_identity()).first()
 
         if farm is None:
