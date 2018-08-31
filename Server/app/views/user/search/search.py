@@ -15,16 +15,14 @@ doList = ['서울특별시', '부산광역시', '대구광역시', '인천광역
           '세종특별자치시', '경기도', '강원도', '충청북도', '충청남도', '전라북도', '전라남도', '경상북도', '경상남도', '제주도']
 
 
-@api.resource('/search')
+@api.resource('/search/<donum>')
 class SearchFarm(BaseResource):
     @swag_from(SEARCH_FARM)
     @jwt_required
-    def post(self):
+    def post(self, donum):
         """
         양식장 검색
         """
-        donum = request.json['donum']
-
         do = str(doList[donum - 1])
 
         all_farm = FarmModel.objects().all()
