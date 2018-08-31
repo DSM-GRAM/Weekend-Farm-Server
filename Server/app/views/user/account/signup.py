@@ -1,37 +1,39 @@
 from flask import Blueprint, abort, request
 from flask_restful import Api
-from flask_jwt_extended import create_access_token, create_refresh_token
 from flasgger import swag_from
-from werkzeug.security import check_password_hash
+from werkzeug.security import generate_password_hash
 
 from app.views import BaseResource
-from app.docs.user.account.signup import USER_SIGNUP_POST
-from app.models.user.account.account import UserModel
+from app.docs.admin.account.signup import ADMIN_SIGNUP_POST
+from app.models.admin import AdminModel
 
 
 blueprint = Blueprint(__name__, __name__)
 api = Api(blueprint)
-api.prefix = '/user'
+api.prefix = '/admin'
 
 
 @api.resource('/signup')
-class AccountManagement(BaseResource):
-    @swag_from(USER_SIGNUP_POST)
+class SignupAdmin(BaseResource):
+    @swag_from(ADMIN_SIGNUP_POST)
     def post(self):
         """
-        유저 회원가입
+        관리자 회원가입
         """
-        payload = request.json
+        admin_id = request.json['id']
+        admin_pw = request.json['pw']
+        admin_name = request.json['name']
+        admin_phone_number = request.json['phone_number']
 
-        user_id = payload['id']
-        user_pw = payload['pw']
+        if AdminModel.objects(id=admin_id).first():
+            abort(409)
 
-        user = UserModel.objects(id=user_id).first()
+        admin_hashed_pw = generate_password_hash(admin_pw)
 
-        if user is None:
-            abort(406)
-
-        return {
-            'access_token': create_access_token(identity=user_id),
-            'refresh_token': create_refresh_token(identity=user_id)
-        }, 200 if check_password_hash(user.pw, user_pw) else abort(406)
+        AdminModel(
+            id=admin_id,
+            pw=admin_hashed_pw,
+            name=admin_name,
+            phone_number=admin_phone_number
+        ).save()
+        return '', 201
