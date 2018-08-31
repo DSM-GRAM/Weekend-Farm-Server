@@ -1,6 +1,6 @@
-from flask import Blueprint, Response, abort, request
+from flask import Blueprint, abort, request
 from flask_restful import Api
-from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
+from flask_jwt_extended import jwt_required
 from flasgger import swag_from
 
 from app.models.farm import FarmModel
@@ -44,7 +44,7 @@ class SearchFarmInfo(BaseResource):
     @jwt_required
     def get(self, farmname):
         """
-        
+
         """
         farm = FarmModel.objects(farm_name=farmname).first()
 
@@ -62,5 +62,5 @@ class SearchFarmInfo(BaseResource):
                 'farm_fish_max': minifarm.farm_fish_max,
                 'temperature': minifarm.temperature
             } for minifarm in farm.mini_farms]
-        }, 200)
+        }], 200)
 
