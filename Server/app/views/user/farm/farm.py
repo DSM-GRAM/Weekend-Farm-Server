@@ -22,7 +22,7 @@ class FarmInform(BaseResource):
         유저 Farm 메인 화면
         """
         apply = ApplyModel.objects(user=UserModel.objects(id=get_jwt_identity()).first()).first()
-        # apply.farm.mini_farms
+
 
         a = {
             'date': apply.period,

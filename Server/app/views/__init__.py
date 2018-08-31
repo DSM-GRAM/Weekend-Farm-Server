@@ -58,11 +58,9 @@ class Router:
         app.register_blueprint(auth.api.blueprint)
         app.register_blueprint(signup.api.blueprint)
         from .user.apply import apply_farm, apply_store
-        # app.register_blueprint(apply_farm.api.blueprint)
+        app.register_blueprint(apply_farm.api.blueprint)
         app.register_blueprint(apply_store.api.blueprint)
         # from .user.farm import farm
         # app.register_blueprint(farm.api.blueprint)
-        # from .user.farm import farm
-        # app.register_blueprint(store.api.blueprint)
         from .user.search import search
         app.register_blueprint(search.api.blueprint)

@@ -11,7 +11,7 @@ from app.docs.admin.account.auth import ADMIN_AUTH_POST
 
 blueprint = Blueprint(__name__, __name__)
 api = Api(blueprint)
-api.prefix = '/admin'
+api.prefix = '/user'
 
 
 @api.resource('/login')

@@ -10,7 +10,7 @@ from app.models.user import UserModel
 
 blueprint = Blueprint(__name__, __name__)
 api = Api(blueprint)
-api.prefix = '/admin'
+api.prefix = '/user'
 
 
 @api.resource('/signup')
@@ -23,7 +23,7 @@ class SignupAdmin(BaseResource):
         user_id = request.json['id']
         user_pw = request.json['pw']
         user_name = request.json['name']
-        user_phone_number = request.json['phone_number']
+        user_phone_number = request.json['phoneNum']
 
         if UserModel.objects(id=user_id).first():
             abort(409)
