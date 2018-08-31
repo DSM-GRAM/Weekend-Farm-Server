@@ -23,9 +23,3 @@ class FarmInform(BaseResource):
         """
         apply = ApplyModel.objects(user=UserModel.objects(id=get_jwt_identity()).first()).first()
 
-
-        a = {
-            'date': apply.period,
-            'money':
-        }
-        pass

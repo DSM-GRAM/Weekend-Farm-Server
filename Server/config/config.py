@@ -9,7 +9,7 @@ class Config:
     PORT = 80
     DEBUG = True
 
-    SECRET_KEY = os.getenv('SECRET_KEY')
+    SECRET_KEY = 'dopsdfjdfob8d2230tvnmk'
 
     RUN_SETTINGS = {
         "host": HOST,
