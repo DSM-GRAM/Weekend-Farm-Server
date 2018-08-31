@@ -1,13 +1,11 @@
-from flask import Blueprint, Response, abort, request
+from flask import Blueprint, request
 from flask_restful import Api
-from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask_jwt_extended import jwt_required
 from flasgger import swag_from
 
-from app.models.user.account.account import UserModel
-from app.models.admin.farm.farm import FarmModel, MiniFarmModel
-from app.models.user.apply.farm import FarmApplyModel, MiniFarmApplyModel
+from app.models.apply import ApplyModel
 from app.views import BaseResource
-from app.docs.user.farm.farm import SEARCH_FARM
+
 
 blueprint = Blueprint(__name__, __name__)
 api = Api(blueprint)
@@ -22,4 +20,15 @@ class SearchFarm(BaseResource):
         """
         유저 양식장 신청
         """
-        pass
+        user_phone_number = request.json['applier_phone_number']
+        period = request.json['period ']
+        details = request.json['details']
+        # use_farm = request.json['farm']
+
+        ApplyModel(
+            user_phone_number=user_phone_number,
+            period=period,
+            details=details
+        ).save()
+
+        return '', 201

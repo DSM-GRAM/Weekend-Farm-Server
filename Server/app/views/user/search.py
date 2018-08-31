@@ -3,7 +3,7 @@ from flask_restful import Api
 from flask_jwt_extended import jwt_required
 from flasgger import swag_from
 
-from app.models.admin.farm.farm import FarmModel
+from app.models.farm import FarmModel
 from app.views import BaseResource
 from app.docs.user.farm.farm import SEARCH_FARM
 

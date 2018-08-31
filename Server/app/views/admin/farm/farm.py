@@ -4,7 +4,7 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from flasgger import swag_from
 
 from app.models.admin import AdminModel
-from app.models.farm import FarmModel, MiniFarmModel
+from app.models.farm import FarmModel, MiniFarmModel, MiniFarmFishModel
 from app.models.apply import ApplyModel
 from app.views import BaseResource
 from app.docs.admin.farm.farm import ADMIN_ADD_INFORM, RETURN_ADMIN_ADD_INFORM
@@ -65,26 +65,24 @@ class FarmInformation(BaseResource):
         return '', 201
 
 
-# @api.resource('/edit')
-# class EditExtensionOption(BaseResource):
-#     @swag_from()
-#     @jwt_required
-#     def post(self):
-#         """
-#         사용 가능 양식장 수정
-#         """
-#         rooms = request.json['rooms']
-#
-#         farm = FarmModel.objects(farm_hostname=get_jwt_identity()).first()
-#
-#         farm.update(
-#             mini_farms=[{
-#                 'farm_number': room.farm_number,
-#                 'farm_cost': room.farm_cost,
-#                 'farm_fish_max': room.farm_fish_max
-#             } for room in rooms])
-#
-#         return '', 201
+@api.resource('/edit/<num>')
+class EditExtensionOption(BaseResource):
+    @swag_from()
+    @jwt_required
+    def post(self, num):
+        """
+        관리자 내 양식장 상황 작성
+        """
+        payload = request.json
+
+        admin = AdminModel.objects(id=get_jwt_identity()).first()
+        farm = FarmModel.objects(farm_hostname=admin.name).first()
+
+        mini_farm = farm.mini_farms[num-1]
+
+        MiniFarmFishModel(
+
+        )
 
 
 @api.resource('/list')
