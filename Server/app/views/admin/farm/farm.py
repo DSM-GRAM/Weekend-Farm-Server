@@ -49,7 +49,7 @@ class FarmInformation(BaseResource):
 
         admin = AdminModel.objects(id=get_jwt_identity()).first()
 
-        minifarms = [MiniFarmModel(**data, admin=admin).save() for data in rooms]
+        minifarms = [MiniFarmModel(**data, admin=admin) for data in rooms]
 
         try:
             FarmModel(
