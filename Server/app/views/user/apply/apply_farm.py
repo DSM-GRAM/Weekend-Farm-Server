@@ -23,7 +23,7 @@ class SearchFarm(BaseResource):
         user_phone_number = request.json['applier_phone_number']
         period = request.json['period ']
         details = request.json['details']
-        # use_farm = request.json['farm']
+        use_farm = request.json['farm']
 
         ApplyModel(
             user_phone_number=user_phone_number,

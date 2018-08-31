@@ -3,8 +3,10 @@ from flask_restful import Api
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from flasgger import swag_from
 
+from app.models.farm import FarmModel, MiniFarmModel
 from app.models.store import StoreModel
 from app.models.user import UserModel
+from app.models.apply import ApplyModel
 from app.views import BaseResource
 
 
@@ -13,21 +15,19 @@ api = Api(blueprint)
 api.prefix = '/user/farm'
 
 
-@api.resource('/apply/<farm_name>')
-class SearchFarm(BaseResource):
+@api.resource('')
+class FarmInform(BaseResource):
     @swag_from()
     @jwt_required
-    def post(self):
+    def get(self):
         """
-        유저 상점 아이템 신청
+        유저 Farm 메인 화면
         """
-        user = UserModel.objects(id=get_jwt_identity()).first()
-        product = request.json['product']
+        apply = ApplyModel.objects(user=UserModel.objects(id=get_jwt_identity()).first()).first()
+        # apply.farm.mini_farms
 
-        StoreModel(
-           user=name,
-
-
-        ).save()
-
-        return '', 200
+        a = {
+            'date': apply.period,
+            'money':
+        }
+        pass

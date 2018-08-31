@@ -51,8 +51,6 @@ class FarmModel(Document):
 
     farm_details = StringField()
 
-    farm_address_do = StringField()
-
     mini_farms = EmbeddedDocumentListField(
         document_type=MiniFarmModel
     )

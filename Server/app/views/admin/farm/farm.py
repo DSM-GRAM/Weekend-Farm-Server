@@ -60,7 +60,6 @@ class FarmInformation(BaseResource):
                 farm_details=details,
                 mini_farms=minifarms
             ).save()
-
         except TypeError:
             abort(406)
 
