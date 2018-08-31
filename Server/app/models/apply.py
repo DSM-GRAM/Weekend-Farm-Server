@@ -6,7 +6,7 @@ from app.models.user import UserModel
 class RoomModel(EmbeddedDocument):
     rNum = IntField()
 
-    rFishKind = IntField()
+    rFishKind = StringField()
 
     rAmount = IntField()
 
