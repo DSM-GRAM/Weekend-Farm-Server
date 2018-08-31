@@ -71,7 +71,15 @@ class Config:
             {
                 'name': '[User] Farm',
                 'description': '유저 Farm 기능 관련 API'
-            }
+            },
+            {
+                'name': '[User] Apply',
+                'description': '유저 Apply 기능 관련 API'
+            },
+            {
+                'name': '[User] Store',
+                'description': '유저 Store 기능 관련 API'
+            },
         ]
     }
 

@@ -1,8 +1,8 @@
 from app.docs import jwt_header
 
-SAMPLE_ACCOUNT = {
-    'tags': [''],
-    'description': '',
+APPLY_FARM = {
+    'tags': ['[User] Apply'],
+    'description': 'Apply_Farm',
     'parameters': [
         jwt_header,
         {

@@ -46,7 +46,7 @@ class SearchFarmInfo(BaseResource):
 
         """
         farmname = request.args.get('farmname')
-        
+
         farm = FarmModel.objects(farm_name=farmname).first()
 
         if farm is None:
