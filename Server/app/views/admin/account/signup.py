@@ -36,4 +36,5 @@ class SignupAdmin(BaseResource):
             name=admin_name,
             phone_number=admin_phone_number
         ).save()
+
         return '', 201

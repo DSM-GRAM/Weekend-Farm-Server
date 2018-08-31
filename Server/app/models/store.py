@@ -3,7 +3,6 @@ from app.models.farm import FarmModel
 
 
 class StoreModel(Document):
-
     name = ReferenceField(
         document_type=FarmModel
     )

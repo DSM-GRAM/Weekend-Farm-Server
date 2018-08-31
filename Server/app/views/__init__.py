@@ -49,12 +49,11 @@ class Router:
         from .admin.account import auth, signup
         app.register_blueprint(auth.api.blueprint)
         app.register_blueprint(signup.api.blueprint)
-        from .admin.apply import apply_store
-        app.register_blueprint(apply_store.api.blueprint)
         from .admin.farm import farm
         app.register_blueprint(farm.api.blueprint)
-        # from .admin.store import store
-        # app.register_blueprint(store.api.blueprint)
+        from .admin.apply import apply_from_user, apply_store
+        app.register_blueprint(apply_from_user.api.blueprint)
+        app.register_blueprint(apply_store.api.blueprint)
         from .user.account import auth, signup
         app.register_blueprint(auth.api.blueprint)
         app.register_blueprint(signup.api.blueprint)

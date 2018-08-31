@@ -16,6 +16,11 @@ api.prefix = '/admin/apply'
 class AdminApplyStore(BaseResource):
     @swag_from()
     @jwt_required
+    def get(self):
+        pass
+
+    @swag_from()
+    @jwt_required
     def post(self):
         """
         관리자 상점 추가

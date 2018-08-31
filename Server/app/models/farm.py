@@ -1,5 +1,6 @@
 from mongoengine import *
 from app.models.admin import AdminModel
+from app.models.user import UserModel
 
 
 class MiniFarmFishModel(EmbeddedDocument):
@@ -11,6 +12,9 @@ class MiniFarmModel(EmbeddedDocument):
     admin = ReferenceField(
         document_type=AdminModel,
         default=None
+    )
+    user = ReferenceField(
+        document_type=UserModel
     )
 
     period = StringField(

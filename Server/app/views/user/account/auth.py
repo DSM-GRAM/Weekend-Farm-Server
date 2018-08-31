@@ -4,7 +4,7 @@ from flask_jwt_extended import create_access_token, create_refresh_token
 from flasgger import swag_from
 from werkzeug.security import check_password_hash
 
-from app.models.admin import AdminModel
+from app.models.user import UserModel
 from app.views import BaseResource
 from app.docs.admin.account.auth import ADMIN_AUTH_POST
 
@@ -23,15 +23,15 @@ class AccountManagement(BaseResource):
         """
         payload = request.json
 
-        admin_id = payload['id']
-        admin_pw = payload['pw']
+        user_id = payload['id']
+        user_pw = payload['pw']
 
-        admin = AdminModel.objects(id=admin_id).first()
+        user = UserModel.objects(id=user_id).first()
 
-        if admin is None:
+        if user is None:
             abort(406)
 
         return {
-            'access_token': create_access_token(identity=admin_id),
-            'refresh_token': create_refresh_token(identity=admin_id)
-        }, 200 if check_password_hash(admin.pw, admin_pw) else abort(406)
+            'access_token': create_access_token(identity=user_id),
+            'refresh_token': create_refresh_token(identity=user_id)
+        }, 200 if check_password_hash(user.pw, user_pw) else abort(406)

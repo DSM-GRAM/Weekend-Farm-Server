@@ -71,6 +71,27 @@ class FarmInformation(BaseResource):
 class EditExtensionOption(BaseResource):
     @swag_from()
     @jwt_required
+    def get(self, num):
+        admin = AdminModel.objects(id=get_jwt_identity()).first()
+        farm = FarmModel.objects(farm_hostname=admin.name).first()
+        apply = ApplyModel.objects(farm=FarmModel.objects(farm_name=farm.farm_name).first()).first()
+        minifarm = farm.mini_farms[num-1]
+
+        return self.unicode_safe_json_dumps({
+            'name': apply.user.name,
+            'phone_number': apply.user.phone_number,
+            'period': apply.period,
+            'temperature': minifarm.temperature,
+            'farm_cost': minifarm.farm_cost,
+            'fish_kind': [{
+                'kind': data.kind,
+                'amount': data.amount
+            } for data in minifarm.fish_kind],
+            'details': minifarm.details
+        })
+
+    @swag_from()
+    @jwt_required
     def post(self, num):
         """
         관리자 내 양식장 상황 작성
@@ -82,9 +103,18 @@ class EditExtensionOption(BaseResource):
 
         mini_farm = farm.mini_farms[num-1]
 
-        MiniFarmFishModel(
+        mini_farm.update(
+            temperature=payload['temperature'],
+            farm_cost=payload['cost'],
+            fish_kind=payload['fish_kind'],
+            # payload['fish_kind'] = [{
+            #   'kind': 'String'
+            #   'amount': 'Int'
+            # }
+            details=payload['details']
+        ).save()
 
-        )
+        return '', 201
 
 
 @api.resource('/list')

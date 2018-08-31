@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash
 
 from app.views import BaseResource
 from app.docs.admin.account.signup import ADMIN_SIGNUP_POST
-from app.models.admin import AdminModel
+from app.models.user import UserModel
 
 
 blueprint = Blueprint(__name__, __name__)
@@ -18,22 +18,23 @@ class SignupAdmin(BaseResource):
     @swag_from(ADMIN_SIGNUP_POST)
     def post(self):
         """
-        관리자 회원가입
+        유저 회원가입
         """
-        admin_id = request.json['id']
-        admin_pw = request.json['pw']
-        admin_name = request.json['name']
-        admin_phone_number = request.json['phone_number']
+        user_id = request.json['id']
+        user_pw = request.json['pw']
+        user_name = request.json['name']
+        user_phone_number = request.json['phone_number']
 
-        if AdminModel.objects(id=admin_id).first():
+        if UserModel.objects(id=user_id).first():
             abort(409)
 
-        admin_hashed_pw = generate_password_hash(admin_pw)
+        user_hashed_pw = generate_password_hash(user_pw)
 
-        AdminModel(
-            id=admin_id,
-            pw=admin_hashed_pw,
-            name=admin_name,
-            phone_number=admin_phone_number
+        UserModel(
+            id=user_id,
+            pw=user_hashed_pw,
+            name=user_name,
+            phone_number=user_phone_number
         ).save()
+
         return '', 201

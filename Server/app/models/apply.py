@@ -4,17 +4,15 @@ from app.models.user import UserModel
 
 
 class ApplyModel(Document):
-    farm_name = ReferenceField(
+    farm = ReferenceField(
         document_type=FarmModel
     )
 
-    applier_phone_number = ReferenceField(
+    user = ReferenceField(
         document_type=UserModel
     )
 
-    period = ReferenceField(
-        document_type=FarmModel
-    )
+    period = StringField()
 
     details = StringField()
 
