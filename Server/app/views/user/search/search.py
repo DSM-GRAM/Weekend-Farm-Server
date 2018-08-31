@@ -23,7 +23,7 @@ class SearchFarm(BaseResource):
         """
         양식장 검색
         """
-        donum = str(request.args.get('donum'))
+        donum = int(request.args.get('donum'))
         do = doList[donum - 1]
 
         all_farm = FarmModel.objects().all()
