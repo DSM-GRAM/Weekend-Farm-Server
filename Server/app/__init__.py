@@ -16,6 +16,6 @@ def create_app(*config_cls):
     JWTManager().init_app(app_)
     Router().init_app(app_)
 
-    Swagger(template=app_.config['SWAGGER_TEMPLATE']).init_app(app_)
+    # Swagger(template=app_.config['SWAGGER_TEMPLATE']).init_app(app_)
 
     return app_

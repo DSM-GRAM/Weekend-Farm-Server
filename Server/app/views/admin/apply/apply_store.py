@@ -25,15 +25,17 @@ class AdminApplyStore(BaseResource):
         """
         관리자 상점 추가
         """
-        product = request.json['product']
-        cost = request.json['cost']
+        itemName = request.json['itemName']
+        itemNum = request.json['itemNum']
         # 개당 가격
+        money = request.json['money']
         details = request.json['details']
 
         StoreModel(
-            store_product=product,
-            store_cost=cost,
-            store_details=details
+            itemName=itemName,
+            itemNum=itemNum,
+            money=money,
+            details=details
         ).save()
 
         return '', 201
