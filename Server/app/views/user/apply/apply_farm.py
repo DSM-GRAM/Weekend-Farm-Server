@@ -28,15 +28,13 @@ class SearchFarm(BaseResource):
 
         user = UserModel.objects(phone_number=user_phone_number).first()
 
+        roominfo = [RoomModel(**data) for data in roominfos]
+
         ApplyModel(
             user=user,
             applyDate=period,
             message=details,
-            roominfo=[RoomModel(
-                rNum=roominfo.rNum,
-                rFishKind=roominfo.rFishKind,
-                rAmount=roominfo.rAmount
-            ) for roominfo in roominfos]
+            roominfo=roominfo
         ).save()
 
         return '', 201
