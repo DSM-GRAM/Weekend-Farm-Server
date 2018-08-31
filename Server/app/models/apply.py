@@ -3,6 +3,14 @@ from app.models.farm import FarmModel
 from app.models.user import UserModel
 
 
+class RoomModel(EmbeddedDocument):
+    rNum = IntField()
+
+    rFishKind = IntField()
+
+    rAmount = IntField()
+
+
 class ApplyModel(Document):
     farm = ReferenceField(
         document_type=FarmModel
@@ -12,12 +20,20 @@ class ApplyModel(Document):
         document_type=UserModel
     )
 
-    period = StringField()
+    phoneNum = StringField()
 
-    details = StringField()
+    applyDate = StringField()
 
-    use_farm_num = IntField()
+    message = StringField()
 
-    use_farm_fish = StringField()
+    roominfo = EmbeddedDocumentListField(
+        document_type=RoomModel
+    )
 
-    use_amount = IntField()
+
+class ItemApplyModel(Document):
+    itemNum = IntField()
+
+    itemName = StringField()
+
+    money = IntField()

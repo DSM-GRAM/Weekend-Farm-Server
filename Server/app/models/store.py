@@ -3,12 +3,14 @@ from app.models.farm import FarmModel
 
 
 class StoreModel(Document):
-    name = ReferenceField(
+    user = ReferenceField(
         document_type=FarmModel
     )
 
-    product = StringField()
+    itemName = StringField()
 
-    cost = IntField()
+    itemNum = IntField()
+
+    money = IntField()
 
     details = StringField()

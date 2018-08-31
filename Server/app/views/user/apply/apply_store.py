@@ -3,6 +3,7 @@ from flask_restful import Api
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from flasgger import swag_from
 
+from app.models.apply import ItemApplyModel
 from app.models.store import StoreModel
 from app.models.user import UserModel
 from app.views import BaseResource
@@ -10,24 +11,39 @@ from app.views import BaseResource
 
 blueprint = Blueprint(__name__, __name__)
 api = Api(blueprint)
-api.prefix = '/user/farm'
+api.prefix = '/user/store'
 
 
-@api.resource('/apply/<farm_name>')
+@api.resource('/apply')
 class SearchFarm(BaseResource):
+    @swag_from()
+    @jwt_required
+    def get(self):
+        """
+        유저 상점 아이템 보여주는 API
+        """
+        items = StoreModel.objects(user=UserModel.objects(id=get_jwt_identity()).first()).all()
+
+        return self.unicode_safe_json_dumps([{
+            'cItemName': item.itemName,
+            'cItemNum': item.itemNum,
+            'money': item.money
+        } for item in items], 200)
+
     @swag_from()
     @jwt_required
     def post(self):
         """
-        유저 상점 아이템 신청
+        유저 상점 아이템 구입 요청 API
         """
-        user = UserModel.objects(id=get_jwt_identity()).first()
-        product = request.json['product']
+        itemNum = request.json['bItemNum']
+        itemName = request.json['bItemName']
+        money = request.json['pMoney']
 
-        StoreModel(
-           user=name,
-
-
+        ItemApplyModel(
+            itemNum=itemNum,
+            itemName=itemName,
+            money=money
         ).save()
 
-        return '', 200
+        return '', 201
