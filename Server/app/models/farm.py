@@ -25,7 +25,7 @@ class MiniFarmModel(EmbeddedDocument):
         default=None
     )
 
-    farm_number = IntField()
+    farm_name = StringField()
 
     farm_cost = IntField()
 
