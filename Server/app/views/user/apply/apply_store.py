@@ -67,3 +67,6 @@ class Secret(BaseResource):
         ).save()
 
         return '', 201
+
+
+# @api.resource('/s
