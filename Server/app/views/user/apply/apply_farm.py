@@ -1,7 +1,6 @@
 from flask import Blueprint, request
 from flask_restful import Api
-from flask_jwt_extended import jwt_required, get_jwt_identity
-from flasgger import swag_from
+from flask_jwt_extended import jwt_required
 
 from app.models.user import UserModel
 from app.models.apply import ApplyModel, RoomModel
@@ -15,7 +14,6 @@ api.prefix = '/user/farm'
 
 @api.resource('/apply')
 class SearchFarm(BaseResource):
-    @swag_from()
     @jwt_required
     def post(self):
         """

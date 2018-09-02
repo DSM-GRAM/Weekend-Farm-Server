@@ -1,10 +1,8 @@
 from flask import Blueprint, abort, request
 from flask_restful import Api
-from flasgger import swag_from
 from werkzeug.security import generate_password_hash
 
 from app.views import BaseResource
-from app.docs.admin.account.signup import ADMIN_SIGNUP_POST
 from app.models.user import UserModel
 
 
@@ -15,7 +13,6 @@ api.prefix = '/user'
 
 @api.resource('/signup')
 class SignupAdmin(BaseResource):
-    @swag_from(ADMIN_SIGNUP_POST)
     def post(self):
         """
         유저 회원가입

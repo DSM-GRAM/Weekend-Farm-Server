@@ -4,7 +4,7 @@ from flask_jwt_extended import get_jwt_identity
 
 import json
 
-# from app.models.admin.account import AdminModel
+from app.models.admin import AdminModel
 
 
 # @jwt_required 를 사용해서 토큰이 있는지 검증하고

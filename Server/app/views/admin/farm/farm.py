@@ -1,13 +1,11 @@
 from flask import Blueprint, abort, request
 from flask_restful import Api
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from flasgger import swag_from
 
 from app.models.admin import AdminModel
 from app.models.farm import FarmModel, MiniFarmModel, MiniFarmFishModel
 from app.models.apply import ApplyModel
 from app.views import BaseResource
-from app.docs.admin.farm.farm import ADMIN_ADD_INFORM, RETURN_ADMIN_ADD_INFORM
 
 blueprint = Blueprint(__name__, __name__)
 api = Api(blueprint)
@@ -16,7 +14,6 @@ api.prefix = '/admin/farm'
 
 @api.resource('')
 class FarmInformation(BaseResource):
-    @swag_from(RETURN_ADMIN_ADD_INFORM)
     @jwt_required
     def get(self):
         """
@@ -32,7 +29,6 @@ class FarmInformation(BaseResource):
             'room_temperature': data.temperature
         } for data in farm.mini_farms], 200) if admin or farm else abort(406)
 
-    @swag_from(ADMIN_ADD_INFORM)
     @jwt_required
     def post(self):
         """
@@ -68,7 +64,6 @@ class FarmInformation(BaseResource):
 
 @api.resource('/edit/<num>')
 class EditExtensionOption(BaseResource):
-    @swag_from()
     @jwt_required
     def get(self, num):
         admin = AdminModel.objects(id=get_jwt_identity()).first()
@@ -88,7 +83,6 @@ class EditExtensionOption(BaseResource):
             'details': minifarm.details
         })
 
-    @swag_from()
     @jwt_required
     def post(self, num):
         """
@@ -117,7 +111,6 @@ class EditExtensionOption(BaseResource):
 
 @api.resource('/list')
 class ViewAdminMiniFarmList(BaseResource):
-    @swag_from()
     @jwt_required
     def get(self):
         """

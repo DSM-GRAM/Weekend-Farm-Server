@@ -1,7 +1,6 @@
 from flask import Blueprint
 from flask_restful import Api
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from flasgger import swag_from
 
 from app.models.farm import FarmModel
 from app.models.apply import ApplyModel
@@ -15,7 +14,6 @@ api.prefix = '/admin/apply'
 
 @api.resource('')
 class ApplyFromUser(BaseResource):
-    @swag_from()
     @jwt_required
     def get(self):
         """

@@ -1,7 +1,6 @@
 from flask import Blueprint, request
 from flask_restful import Api
 from flask_jwt_extended import jwt_required
-from flasgger import swag_from
 
 from app.views import BaseResource
 from app.models.store import StoreModel
@@ -14,12 +13,6 @@ api.prefix = '/admin/apply'
 
 @api.resource('/store')
 class AdminApplyStore(BaseResource):
-    @swag_from()
-    @jwt_required
-    def get(self):
-        pass
-
-    @swag_from()
     @jwt_required
     def post(self):
         """

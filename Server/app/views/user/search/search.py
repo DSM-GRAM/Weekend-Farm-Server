@@ -1,11 +1,9 @@
 from flask import Blueprint, abort, request
 from flask_restful import Api
 from flask_jwt_extended import jwt_required
-from flasgger import swag_from
 
 from app.models.farm import FarmModel
 from app.views import BaseResource
-from app.docs.user.farm.farm import SEARCH_FARM
 
 blueprint = Blueprint(__name__, __name__)
 api = Api(blueprint)
@@ -17,7 +15,6 @@ doList = ['서울특별시', '부산광역시', '대구광역시', '인천광역
 
 @api.resource('/search')
 class SearchFarm(BaseResource):
-    @swag_from(SEARCH_FARM)
     @jwt_required
     def get(self):
         """
@@ -39,7 +36,6 @@ class SearchFarm(BaseResource):
 
 @api.resource('/search')
 class SearchFarmInfo(BaseResource):
-    @swag_from()
     @jwt_required
     def get(self):
         """

@@ -1,7 +1,6 @@
 from flask import Blueprint, request
 from flask_restful import Api
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from flasgger import swag_from
 
 from app.models.apply import ItemApplyModel
 from app.models.store import StoreModel
@@ -16,7 +15,6 @@ api.prefix = '/user/store'
 
 @api.resource('/apply')
 class SearchFarm(BaseResource):
-    @swag_from()
     @jwt_required
     def get(self):
         """
@@ -30,7 +28,6 @@ class SearchFarm(BaseResource):
             'money': item.money
         } for item in items], 200)
 
-    @swag_from()
     @jwt_required
     def post(self):
         """
@@ -69,4 +66,3 @@ class Secret(BaseResource):
         return '', 201
 
 
-# @api.resource('/s
