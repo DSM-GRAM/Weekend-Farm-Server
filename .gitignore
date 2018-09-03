@@ -239,5 +239,6 @@ venv.bak/
 pyvenv.cfg
 pip-selfcheck.json
 
+*.qw
 
 # End of https://www.gitignore.io/api/macos,linux,python,pycharm+all
